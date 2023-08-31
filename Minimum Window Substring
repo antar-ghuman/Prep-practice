@@ -1,0 +1,33 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+
+        target_freq = Counter(t)
+        required_chars = len(target_freq)
+        formed_chars = 0
+
+        window_freq = Counter()
+        left = 0
+        min_length = float('inf')
+        result = ""
+
+        for right in range(len(s)):
+            char = s[right]
+            window_freq[char] += 1
+
+            if char in target_freq and window_freq[char] == target_freq[char]:
+                formed_chars += 1
+
+            while formed_chars == required_chars and left <= right:
+                if right - left + 1 < min_length:
+                    min_length = right - left + 1
+                    result = s[left:right+1]
+
+                left_char = s[left]
+                window_freq[left_char] -= 1
+
+                if left_char in target_freq and window_freq[left_char] < target_freq[left_char]:
+                    formed_chars -= 1
+
+                left += 1
+
+        return result
