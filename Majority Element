@@ -1,0 +1,6 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+
+        t = Counter(nums)
+        ans = max(t, key=t.get)
+        return ans
