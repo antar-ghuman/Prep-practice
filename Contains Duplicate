@@ -9,3 +9,6 @@ class Solution:
             if chars[n] >= 2:
                 return True
         return False
+
+        #smarter way
+        # return True if len(set(nums)) < len(nums) else False
