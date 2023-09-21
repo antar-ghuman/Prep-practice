@@ -1,0 +1,23 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        count = 0
+        found_non_space = False
+
+        for i in reversed(s):
+            if i != " ":
+                count += 1
+                found_non_space = True
+            elif found_non_space:
+                break
+
+        return count
+
+
+        # s=s.strip()
+        # print (s)
+        # index = len(s)-1
+        # while s[index]!=" " and index >= 0:
+        #     count+=1
+        #     index-=1
+        
+        # return count
