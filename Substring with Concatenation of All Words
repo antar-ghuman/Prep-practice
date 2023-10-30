@@ -1,0 +1,56 @@
+class Solution:
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+
+        if len(s) == 0 or s is None or words is None:
+            return []
+
+        count = {}
+        word_len = len(words[0])
+        window_size = len(words) * word_len
+        ans = []
+        for word in words:
+            count[word] = count.get(word,0)+1
+        for i in range(len(s) - window_size + 1):
+            temp = s[i:i+window_size]
+            
+            lst = {}
+            for right in range(len(words)):
+
+                wordindex = i+right * word_len
+                temp_word = s[wordindex: wordindex+word_len]
+
+                if temp_word not in count:
+                    break
+                
+                lst[temp_word] = lst.get(temp_word, 0) +1
+
+                if lst[temp_word] > count[temp_word]:
+                    break
+
+            if lst == count:
+                ans.append(i)
+
+        return ans
+        # if not s or not words:
+        #     return []
+        # left = 0
+        # res = []
+        # right = len(words[0])* len(words)
+
+        # while right <= len(s):
+        #     curr = s[left:right]
+
+        #     if all(curr.count(word) == words.count(word) for word in words):
+        #         res.append(left)
+
+        #     left+=1
+        #     right+=1
+        #     print(right)
+            
+
+        # return res
+
+
+
+
+        
