@@ -1,0 +1,16 @@
+class Solution:
+    def wordPattern(self, p: str, s: str) -> bool:
+
+            words, map_w_p = s.split(' '), dict()
+
+            if len(p) != len(words): return False
+             
+            if len(set(p)) != len(set(words)): return False #to check uniqueness, one letter can be mapped to one word
+
+            for i in range(len(words)):
+                if words[i] not in map_w_p:
+                    map_w_p[words[i]] = p[i]
+                elif map_w_p[words[i]] != p[i]:
+                    return False
+
+            return True
