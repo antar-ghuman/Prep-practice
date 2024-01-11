@@ -1,0 +1,19 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+
+        t = Counter(nums)
+
+        for key, value in t.items():
+            if value == 1:
+                return key
+
+        return None
+
+        # for x in nums:
+        #     if nums.count(x) == 1:
+        #         return x
+
+
+
+        
+        
