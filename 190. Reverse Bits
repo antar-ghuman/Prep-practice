@@ -1,0 +1,26 @@
+# class Solution:
+#     def reverseBits(self, n: int) -> int:
+#         ans = ""
+#         for _ in range(32):  # Ensure 32 bits
+#             ans += str(n % 2)
+#             n >>= 1
+
+#         return int(ans, 2)  # Convert the binary string back to an integer
+
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        # Convert to binary and remove the '0b' prefix
+        binary_str = bin(n)[2:]
+
+        # Reverse the binary string
+        reversed_str = binary_str[::-1]
+
+        # Pad with zeros to make it 32 bits
+        padded_str = reversed_str.ljust(32, '0')
+
+        # Convert the binary string back to an integer
+        return int(padded_str, 2)
+
+
+        
